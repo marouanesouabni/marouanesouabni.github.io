@@ -17,14 +17,14 @@ export function Hero() {
           <span>VOLUME 03 · 2026</span>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-end">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9 }}
-            className="lg:col-span-8"
+            className="lg:col-span-7"
           >
-            <h1 className="text-bone tracking-tight" style={{ fontSize: "clamp(3rem, 9vw, 8.5rem)", lineHeight: 0.95, fontWeight: 400, fontFamily: "'Cormorant Garamond', serif" }}>
+            <h1 className="text-bone tracking-tight" style={{ fontSize: "clamp(2rem, 7vw, 6.5rem)", lineHeight: 0.95, fontWeight: 400, fontFamily: "'Cormorant Garamond', serif" }}>
               Marouane builds <br />
               <span className="italic text-amber">software</span> that <br />
               <span className="relative">
@@ -35,11 +35,11 @@ export function Hero() {
               </span>
             </h1>
 
-            <div className="mt-12 grid sm:grid-cols-3 gap-8 max-w-3xl">
-              <div className="sm:col-span-2 text-bone/55" style={{ fontSize: "1rem", lineHeight: 1.65 }}>
+            <div className="mt-8 lg:mt-12 flex flex-col md:grid md:grid-cols-2 gap-6 lg:gap-8">
+              <div className="md:col-span-1 text-bone/55 text-sm md:text-base max-w-2xl" style={{ lineHeight: 1.65 }}>
                 Full-stack developer based in Morocco, focused on Node, Express, React, and the messy real-time edges in between. Currently sketching with Google Cloud &amp; Firebase, and looking for a meaningful 2026 internship.
               </div>
-              <div className="space-y-4">
+              <div className="md:col-span-1 space-y-4 md:space-y-5">
                 <div>
                   <div className="text-[10px] tracking-[0.2em] text-bone/30">CURRENTLY</div>
                   <div className="text-bone text-sm mt-1">CS Student, freelancing on the side</div>
@@ -51,12 +51,12 @@ export function Hero() {
               </div>
             </div>
 
-            <div className="mt-12 flex flex-wrap items-center gap-6">
-              <a href="#projects" className="group inline-flex items-center gap-3 bg-amber text-[#0c0c0c] rounded-full pl-6 pr-2 py-2 hover:bg-bone transition-colors">
-                <span className="text-sm">See selected work</span>
+            <div className="mt-8 lg:mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+              <a href="#projects" className="group inline-flex items-center gap-3 bg-amber text-[#0c0c0c] rounded-full pl-6 pr-2 py-2 hover:bg-bone transition-colors text-sm">
+                <span>See selected work</span>
                 <span className="w-9 h-9 rounded-full bg-[#0c0c0c] text-amber flex items-center justify-center group-hover:rotate-45 transition-transform">→</span>
               </a>
-              <a href="#contact" className="text-sm text-bone/70 hover:text-bone underline-offset-4 hover:underline">Or say hello →</a>
+              <a href="#contact" className="text-xs sm:text-sm text-bone/70 hover:text-bone underline-offset-4 hover:underline">Or say hello →</a>
             </div>
           </motion.div>
 
@@ -64,9 +64,9 @@ export function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.2 }}
-            className="lg:col-span-4"
+            className="w-full sm:w-64 lg:w-72 lg:col-span-5"
           >
-            <div className="relative">
+            <div className="relative max-w-xs mx-auto sm:mx-0">
               <div className="aspect-[3/4] rounded-sm overflow-hidden border border-bone/10 grayscale hover:grayscale-0 transition-all duration-700">
                 <ImageWithFallback
                   src="./profile.jpg"
@@ -74,29 +74,29 @@ export function Hero() {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute -top-3 -left-3 text-[10px] tracking-[0.25em] text-bone/40 bg-[#0c0c0c] px-2 py-1 border border-bone/10">
-                FIG. 01 — MAROUANE, 2026
+              <div className="absolute -top-3 -left-3 text-[8px] sm:text-[10px] tracking-[0.25em] text-bone/40 bg-[#0c0c0c] px-2 py-1 border border-bone/10">
+                FIG. 01 — MAROUANE
               </div>
-              <div className="absolute -bottom-4 -right-4 bg-amber text-[#0c0c0c] rounded-full w-24 h-24 flex items-center justify-center text-center" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+              <div className="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 bg-amber text-[#0c0c0c] rounded-full w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex items-center justify-center text-center" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                 <div>
-                  <div className="italic" style={{ fontSize: "1.5rem", lineHeight: 1 }}>open</div>
-                  <div className="text-[10px] tracking-[0.15em] mt-1">FOR INTERNSHIPS</div>
+                  <div className="italic text-sm sm:text-base lg:text-2xl" style={{ lineHeight: 1 }}>open</div>
+                  <div className="text-[8px] sm:text-[10px] tracking-[0.15em] mt-0.5 sm:mt-1">FOR WORK</div>
                 </div>
               </div>
             </div>
           </motion.div>
         </div>
 
-        <div className="mt-24 pt-10 border-t border-bone/10 grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="mt-16 lg:mt-24 pt-8 lg:pt-10 border-t border-bone/10 grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-8">
           {[
             { k: "30+", v: "Projects shipped" },
             { k: "4 yrs", v: "Writing code" },
             { k: "12", v: "Certifications" },
-            { k: "01", v: "Goal — to keep getting better" },
+            { k: "01", v: "Goal — to keep improving" },
           ].map(s => (
             <div key={s.v}>
-              <div className="text-bone italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "3rem", lineHeight: 1 }}>{s.k}</div>
-              <div className="text-xs text-bone/40 mt-2 max-w-[160px]">{s.v}</div>
+              <div className="text-bone italic" style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.75rem, 5vw, 3rem)", lineHeight: 1 }}>{s.k}</div>
+              <div className="text-[10px] sm:text-xs text-bone/40 mt-1 sm:mt-2 max-w-[160px]">{s.v}</div>
             </div>
           ))}
         </div>
