@@ -1,7 +1,9 @@
 import { motion } from "motion/react";
+import { useState } from "react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 
 export function Hero() {
+  const [showBadge, setShowBadge] = useState(true);
   return (
     <section id="about" className="relative pt-32 pb-24 px-8 lg:px-14 overflow-hidden">
       <div className="absolute inset-0 pointer-events-none opacity-[0.04]" style={{
@@ -53,8 +55,8 @@ export function Hero() {
 
             <div className="mt-8 lg:mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <a href="#projects" className="group inline-flex items-center gap-3 bg-amber text-[#0c0c0c] rounded-full pl-6 pr-2 py-2 hover:bg-bone transition-colors text-sm">
-                <span>See selected work</span>
-                <span className="w-9 h-9 rounded-full bg-[#0c0c0c] text-amber flex items-center justify-center group-hover:rotate-45 transition-transform">→</span>
+                <span className="hidden sm:inline">See selected work</span>
+                <span className="w-9 h-9 rounded-full bg-[#0c0c0c] text-amber flex items-center justify-center group-hover:rotate-45 transition-transform text-lg">→</span>
               </a>
               <a href="#contact" className="text-xs sm:text-sm text-bone/70 hover:text-bone underline-offset-4 hover:underline">Or say hello →</a>
             </div>
@@ -77,10 +79,20 @@ export function Hero() {
               <div className="absolute -top-3 -left-3 text-[8px] sm:text-[10px] tracking-[0.25em] text-bone/40 bg-[#0c0c0c] px-2 py-1 border border-bone/10">
                 FIG. 01 — MAROUANE
               </div>
-              <div className="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 bg-amber text-[#0c0c0c] rounded-full w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex items-center justify-center text-center" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+              <div className="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 bg-amber text-[#0c0c0c] rounded-full w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex items-center justify-center text-center cursor-pointer hover:shadow-lg transition-all" style={{ fontFamily: "'Cormorant Garamond', serif" }} onClick={() => setShowBadge(!showBadge)}>
                 <div>
                   <div className="italic text-sm sm:text-base lg:text-2xl" style={{ lineHeight: 1 }}>open</div>
-                  <div className="text-[8px] sm:text-[10px] tracking-[0.15em] mt-0.5 sm:mt-1">FOR WORK</div>
+                  {showBadge && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -5 }}
+                      transition={{ duration: 0.2 }}
+                      className="text-[8px] sm:text-[10px] tracking-[0.15em] mt-0.5 sm:mt-1"
+                    >
+                      FOR WORK
+                    </motion.div>
+                  )}
                 </div>
               </div>
             </div>

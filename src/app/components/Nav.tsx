@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router";
+import { motion } from "motion/react";
 
 const links = [
   { n: "01", l: "About", href: "/#about" },
@@ -12,6 +13,7 @@ const links = [
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [showStatus, setShowStatus] = useState(true);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
@@ -32,14 +34,23 @@ export function Nav() {
             </Link>
           ))}
         </nav>
-        <Link to="/#contact" className="group inline-flex items-center gap-2 text-xs text-bone">
+        <button onClick={() => setShowStatus(!showStatus)} className="group inline-flex items-center gap-2 text-xs text-bone hover:text-amber transition-colors cursor-pointer">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-amber"></span>
           </span>
-          Available for work
-          <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-        </Link>
+          {showStatus && (
+            <motion.span
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -10 }}
+              transition={{ duration: 0.2 }}
+            >
+              Available for work
+            </motion.span>
+          )}
+          <span className="ml-1 group-hover:translate-x-1 transition-transform">→</span>
+        </button>
       </div>
     </header>
   );
