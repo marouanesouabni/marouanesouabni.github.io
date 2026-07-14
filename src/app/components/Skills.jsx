@@ -7,7 +7,7 @@ const groups = [
   },
   {
     label: "Frontend",
-    items: ["React", "Next.js", "TypeScript", "Tailwind", "Motion", "Vite"],
+    items: ["React", "Next.js", "JavaScript", "Tailwind", "Motion", "Vite"],
   },
   {
     label: "Cloud & DevOps",
@@ -24,7 +24,7 @@ const groups = [
 ];
 
 export function Skills() {
-  const [active, setActive] = useState<string | null>(null);
+  const [active, setActive] = useState(null);
 
   return (
     <section id="skills" className="relative py-28 px-8 lg:px-14">

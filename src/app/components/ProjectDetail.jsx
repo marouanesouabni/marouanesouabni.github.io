@@ -122,7 +122,7 @@ export function ProjectDetail() {
   );
 }
 
-function ProjectMeta({ label, value }: { label: string; value: string }) {
+function ProjectMeta({ label, value }) {
   return (
     <div className="border border-bone/10 rounded-sm p-5 bg-bone/[0.02]">
       <div className="text-[10px] tracking-[0.25em] text-bone/35 mb-2">{label}</div>

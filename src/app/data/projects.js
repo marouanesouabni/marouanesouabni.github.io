@@ -1,22 +1,4 @@
-export type Project = {
-  n: string;
-  slug: string;
-  title: string;
-  kind: string;
-  year: string;
-  desc: string;
-  headline: string;
-  role: string;
-  stack: string[];
-  img: string;
-  span: string;
-  h: string;
-  overview: string[];
-  highlights: string[];
-  outcomes: string[];
-};
-
-export const projects: Project[] = [
+export const projects = [
   {
     n: "01",
     slug: "notesboard",
@@ -108,33 +90,33 @@ export const projects: Project[] = [
     n: "04",
     slug: "portfolio",
     title: "Portfolio (this site)",
-    kind: "Frontend",
+    kind: "MERN · Full-stack",
     year: "2026",
-    desc: "A modern, performance-focused portfolio built with React 18, TypeScript, and Tailwind CSS v4.",
-    headline: "A portfolio designed to make selected work, skills, and contact paths easy to scan.",
-    role: "Frontend developer",
-    stack: ["React", "TypeScript", "Tailwind v4", "Motion"],
+    desc: "A full-stack portfolio built with React, Node.js, Express, MongoDB, and Tailwind CSS.",
+    headline: "A portfolio with a public showcase, server-side contact delivery, and a private message dashboard.",
+    role: "Full-stack developer",
+    stack: ["React", "JavaScript", "Express", "MongoDB", "Tailwind", "Motion"],
     img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200",
     span: "lg:col-span-7",
     h: "aspect-[16/10]",
     overview: [
-      "This site packages a concise developer story into a single-page portfolio with richer project detail routes.",
-      "The build keeps the visual language restrained and editorial while preserving practical navigation, fast loading, and responsive sections.",
+      "This site presents selected work in a responsive portfolio with dedicated project pages.",
+      "The MERN architecture adds server-side contact delivery, MongoDB message storage, and a private dashboard for inbox management.",
     ],
     highlights: [
-      "React component sections for hero, projects, experience, skills, certifications, and contact.",
-      "Project detail routes that turn each featured item into a real page.",
-      "Tailwind CSS v4 styling with custom font and color tokens.",
-      "Production build through Vite.",
+      "React component sections for the hero, projects, experience, skills, certifications, and contact form.",
+      "Express API protected with rate limiting, CORS, and JWT authentication for the dashboard.",
+      "MongoDB storage and SMTP e-mail delivery for contact requests.",
+      "Tailwind styling and Motion animations preserved across the public site.",
     ],
     outcomes: [
-      "Project cards now lead to concrete pages instead of empty anchors.",
-      "TypeScript tooling is installed so editor diagnostics are meaningful.",
-      "The site is easier to extend with future case studies.",
+      "Project cards lead to dedicated detail pages.",
+      "Contact requests are handled by the server rather than the visitor's e-mail application.",
+      "Private inbox management is ready for deployment once environment variables are configured.",
     ],
   },
 ];
 
-export function getProjectBySlug(slug: string | undefined) {
+export function getProjectBySlug(slug) {
   return projects.find(project => project.slug === slug);
 }

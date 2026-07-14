@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import { api } from "../lib/api";
 
@@ -9,12 +9,12 @@ export function AdminLogin() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function submit(event: FormEvent<HTMLFormElement>) {
+  async function submit(event) {
     event.preventDefault();
     setError("");
     setLoading(true);
     try {
-      const result = await api<{ token: string }>("/auth/login", {
+      const result = await api("/auth/login", {
         method: "POST",
         body: JSON.stringify({ email, password }),
       });

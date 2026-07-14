@@ -7,7 +7,7 @@ const certs = [
   { issuer: "freeCodeCamp", name: "Responsive Web Design", status: "Completed", year: "2024", note: "300 hr curriculum" },
 ];
 
-const statusColor = (s: string) =>
+const statusColor = (s) =>
   s === "Completed" ? "text-amber" : s === "In Progress" ? "text-bone" : "text-bone/40";
 
 export function Certifications() {

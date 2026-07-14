@@ -4,15 +4,9 @@ import { api } from "../lib/api";
 const types = ["Freelance", "Internship", "Full-time", "Just say hi"];
 const contactEmail = "marouane.souabni@usmba.ac.ma";
 
-type ContactForm = {
-  name: string;
-  email: string;
-  message: string;
-};
-
 export function Contact() {
   const [type, setType] = useState("Internship");
-  const [form, setForm] = useState<ContactForm>({
+  const [form, setForm] = useState({
     name: "",
     email: "",
     message: "",
@@ -20,12 +14,12 @@ export function Contact() {
   const [status, setStatus] = useState("");
   const [sending, setSending] = useState(false);
 
-  const updateField = (field: keyof ContactForm, value: string) => {
+  const updateField = (field, value) => {
     setForm(current => ({ ...current, [field]: value }));
     setStatus("");
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const name = form.name.trim();
@@ -39,7 +33,7 @@ export function Contact() {
 
     setSending(true);
     try {
-      const result = await api<{ message: string }>("/contact", { method: "POST", body: JSON.stringify({ name, email, type, message }) });
+      const result = await api("/contact", { method: "POST", body: JSON.stringify({ name, email, type, message }) });
       setStatus(result.message);
       setForm({ name: "", email: "", message: "" });
     } catch (error) {
@@ -65,7 +59,7 @@ export function Contact() {
               together.
             </h2>
             <p className="text-bone/55 max-w-md mb-10">
-              Have a project in mind, an internship opportunity, or just want to nerd out about TypeScript? I read everything.
+              Have a project in mind, an internship opportunity, or want to talk about useful web applications? I read everything.
             </p>
 
             <div className="space-y-3 text-sm">
@@ -155,17 +149,7 @@ export function Contact() {
   );
 }
 
-type FieldProps = {
-  label: string;
-  placeholder: string;
-  type?: string;
-  textarea?: boolean;
-  value: string;
-  onChange: (value: string) => void;
-  required?: boolean;
-};
-
-function Field({ label, placeholder, type = "text", textarea = false, value, onChange, required = false }: FieldProps) {
+function Field({ label, placeholder, type = "text", textarea = false, value, onChange, required = false }) {
   return (
     <label className="block">
       <div className="text-[10px] tracking-[0.25em] text-bone/40 mb-2">{label}</div>

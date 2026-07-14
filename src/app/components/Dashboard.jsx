@@ -1,20 +1,18 @@
 import { useEffect, useMemo, useState } from "react";
 import { Navigate, useNavigate } from "react-router";
 import { motion } from "motion/react";
-import { api, ContactMessage } from "../lib/api";
-
-type MessageResponse = { messages: ContactMessage[]; databaseConnected: boolean };
+import { api } from "../lib/api";
 
 export function Dashboard() {
   const navigate = useNavigate();
   const token = sessionStorage.getItem("portfolio_admin_token");
-  const [messages, setMessages] = useState<ContactMessage[]>([]);
+  const [messages, setMessages] = useState([]);
   const [databaseConnected, setDatabaseConnected] = useState(true);
   const [status, setStatus] = useState("Loading messages…");
 
   useEffect(() => {
     if (!token) return;
-    api<MessageResponse>("/messages", {}, token)
+    api("/messages", {}, token)
       .then(result => { setMessages(result.messages); setDatabaseConnected(result.databaseConnected); setStatus(""); })
       .catch(error => { setStatus(error instanceof Error ? error.message : "Unable to load messages."); });
   }, [token]);
@@ -23,9 +21,9 @@ export function Dashboard() {
   if (!token) return <Navigate to="/admin" replace />;
   const authToken = token;
 
-  async function updateStatus(id: string, nextStatus: ContactMessage["status"]) {
+  async function updateStatus(id, nextStatus) {
     try {
-      const result = await api<{ message: ContactMessage }>(`/messages/${id}`, { method: "PATCH", body: JSON.stringify({ status: nextStatus }) }, authToken);
+      const result = await api(`/messages/${id}`, { method: "PATCH", body: JSON.stringify({ status: nextStatus }) }, authToken);
       setMessages(current => current.map(message => message._id === id ? result.message : message));
     } catch (error) { setStatus(error instanceof Error ? error.message : "Unable to update the message."); }
   }
@@ -50,13 +48,13 @@ export function Dashboard() {
         {messages.length === 0 && !status ? <p className="p-8 text-sm text-bone/50">No messages yet.</p> : messages.map((message, index) => <motion.article initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.04 }} key={message._id} className="p-5 border-b last:border-b-0 border-bone/10">
           <div className="flex flex-wrap items-start justify-between gap-4 mb-3"><div><h2 className="text-lg text-bone">{message.name}</h2><a className="text-sm text-amber" href={`mailto:${message.email}`}>{message.email}</a></div><div className="text-right"><span className="text-[10px] tracking-wider border border-bone/15 px-2 py-1">{message.type}</span><p className="mt-2 text-xs text-bone/40">{new Date(message.createdAt).toLocaleString()}</p></div></div>
           <p className="whitespace-pre-wrap text-sm text-bone/70 leading-6">{message.message}</p>
-          <div className="mt-4 flex gap-2">{(["new", "read", "archived"] as const).map(next => <button key={next} onClick={() => updateStatus(message._id, next)} className={`text-[10px] uppercase tracking-wider px-3 py-1.5 border ${message.status === next ? "border-amber text-amber" : "border-bone/15 text-bone/45 hover:border-bone/40"}`}>{next}</button>)}</div>
+          <div className="mt-4 flex gap-2">{["new", "read", "archived"].map(next => <button key={next} onClick={() => updateStatus(message._id, next)} className={`text-[10px] uppercase tracking-wider px-3 py-1.5 border ${message.status === next ? "border-amber text-amber" : "border-bone/15 text-bone/45 hover:border-bone/40"}`}>{next}</button>)}</div>
         </motion.article>)}
       </section>
     </div>
   </main>;
 }
 
-function Metric({ label, value, accent = false, index }: { label: string; value: string | number; accent?: boolean; index: number }) {
+function Metric({ label, value, accent = false, index }) {
   return <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 + index * 0.07 }} className="border border-bone/10 p-5"><p className="text-[10px] tracking-[0.2em] text-bone/45 mb-3">{label}</p><p className={`text-3xl ${accent ? "text-amber" : "text-bone"}`}>{value}</p></motion.div>;
 }

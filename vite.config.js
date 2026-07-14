@@ -1,7 +1,10 @@
 import { defineConfig } from 'vite'
 import path from 'path'
+import { fileURLToPath } from 'node:url'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // Plugin personnalisé pour résoudre les assets exportés de Figma
 function figmaAssetResolver() {
@@ -18,7 +21,7 @@ function figmaAssetResolver() {
 
 export default defineConfig({
   /**
-   * IMPORTANT : Si ton repo est "sbnmarouan.github.io", la base doit être '/'.
+   * IMPORTANT : Pour le repo "marouanesouabni.github.io", la base doit être '/'.
    * Si ton repo a un autre nom (ex: "portfolio"), utilise '/nom-du-repo/'.
    */
   base: '/', 

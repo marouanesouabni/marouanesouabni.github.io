@@ -1,5 +1,5 @@
 {
-  "name": "@figma/my-make-file",
+  "name": "marouane-portfolio",
   "private": true,
   "version": "0.0.1",
   "type": "module",
@@ -9,7 +9,6 @@
     "dev:full": "concurrently \"pnpm dev\" \"pnpm dev:server\"",
     "build": "vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit",
     "predeploy": "pnpm build",
     "deploy": "gh-pages -d dist",
     "start": "node server/server.js",
@@ -32,14 +31,10 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "4.1.12",
-    "@types/node": "^20.0.0",
-    "@types/react": "^18.3.28",
-    "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react": "4.7.0",
     "concurrently": "^10.0.3",
     "gh-pages": "^6.3.0",
     "tailwindcss": "4.1.12",
-    "typescript": "^6.0.3",
     "vite": "6.3.5"
   },
   "pnpm": {
