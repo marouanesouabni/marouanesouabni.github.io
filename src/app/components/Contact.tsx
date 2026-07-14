@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { api } from "../lib/api";
 
 const types = ["Freelance", "Internship", "Full-time", "Just say hi"];
-const contactEmail = "sbnmarouan@gmail.com";
+const contactEmail = "marouane.souabni@usmba.ac.ma";
 
 type ContactForm = {
   name: string;
@@ -17,13 +18,14 @@ export function Contact() {
     message: "",
   });
   const [status, setStatus] = useState("");
+  const [sending, setSending] = useState(false);
 
   const updateField = (field: keyof ContactForm, value: string) => {
     setForm(current => ({ ...current, [field]: value }));
     setStatus("");
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const name = form.name.trim();
@@ -35,19 +37,16 @@ export function Contact() {
       return;
     }
 
-    const subject = encodeURIComponent(`${type} inquiry from ${name}`);
-    const body = encodeURIComponent(
-      [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Looking for: ${type}`,
-        "",
-        message,
-      ].join("\n")
-    );
-
-    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
-    setStatus("Opening your email app with the message ready to send.");
+    setSending(true);
+    try {
+      const result = await api<{ message: string }>("/contact", { method: "POST", body: JSON.stringify({ name, email, type, message }) });
+      setStatus(result.message);
+      setForm({ name: "", email: "", message: "" });
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "Unable to send your message. Please try again later.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -142,8 +141,8 @@ export function Contact() {
               required
             />
 
-            <button type="submit" className="mt-8 group w-full inline-flex items-center justify-center gap-3 bg-amber hover:bg-bone text-[#0c0c0c] rounded-full py-4 transition-colors">
-              <span>Send message</span>
+            <button disabled={sending} type="submit" className="mt-8 group w-full inline-flex items-center justify-center gap-3 bg-amber hover:bg-bone text-[#0c0c0c] rounded-full py-4 transition-colors disabled:opacity-60">
+              <span>{sending ? "Sending…" : "Send message"}</span>
               <span className="group-hover:translate-x-1 transition-transform">→</span>
             </button>
             <div className="mt-3 min-h-4 text-xs text-bone/40 text-center" aria-live="polite">

@@ -11,20 +11,25 @@ import { Skills } from "./components/Skills";
 import { Certifications } from "./components/Certifications";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
+import { AdminLogin } from "./components/AdminLogin";
+import { Dashboard } from "./components/Dashboard";
 
 
 export default function App() {
+  const { pathname } = useLocation();
+  const privateArea = pathname === "/admin" || pathname === "/dashboard";
   return (
     <div id="top" className="min-h-screen bg-[#0c0c0c] text-bone selection:bg-amber selection:text-[#0c0c0c]">
-      <ScrollToHash />
-      <Nav />
+      {!privateArea && <><ScrollToHash /><Nav /></>}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/projects/:slug" element={<ProjectDetail />} />
+        <Route path="/admin" element={<AdminLogin />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-      <Footer />
+      {!privateArea && <Footer />}
     </div>
   );
 }

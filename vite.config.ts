@@ -56,5 +56,8 @@ export default defineConfig({
     // Configuration optionnelle pour le développement local
     port: 5173,
     strictPort: true,
+    proxy: {
+      "/api": "http://localhost:5000",
+    },
   }
 })
