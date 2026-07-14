@@ -18,4 +18,4 @@ app.use("/api/auth", authRouter);
 app.use("/api", messagesRouter);
 app.use((error, _req, res, _next) => { console.error(error); res.status(500).json({ message: "An unexpected server error occurred." }); });
 
-connectDatabase().then(() => app.listen(config.port, () => console.log(`API listening on port ${config.port}`))).catch((error) => { console.error("Unable to start API:", error.message); process.exit(1); });
+connectDatabase().then(() => app.listen(config.port, "0.0.0.0", () => console.log(`API listening on port ${config.port}`))).catch((error) => { console.error("Unable to start API:", error.message); process.exit(1); });
