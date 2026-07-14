@@ -21,7 +21,7 @@ export function Footer() {
           <div className="flex items-center gap-4">
             <a href="https://github.com/marouanesouabni" className="hover:text-amber transition-colors">GitHub</a>
             <a href="https://www.linkedin.com/in/marouane-souabni-a10079385/" className="hover:text-amber transition-colors">LinkedIn</a>
-            <a href="mailto:marouane.souabni@usmba.ac.ma" className="hover:text-amber transition-colors">Email</a>
+            <a href="mailto:sbnmarouan@gmail.com" className="hover:text-amber transition-colors">Email</a>
           </div>
         </div>
 

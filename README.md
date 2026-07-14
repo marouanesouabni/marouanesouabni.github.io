@@ -6,7 +6,7 @@ Portfolio full-stack avec un frontend React/Vite, une API Node.js/Express, Mongo
 
 ```text
 React + Vite (GitHub Pages)  →  Express API (Render/Railway)  →  MongoDB Atlas
-                                    └─ SMTP → marouane.souabni@usmba.ac.ma
+                                    └─ SMTP → sbnmarouan@gmail.com
 ```
 
 GitHub Pages peut héberger le frontend, mais pas Express, MongoDB ou l'envoi d'e-mails. L'API doit être déployée sur un hébergeur Node comme Render ou Railway, et MongoDB sur Atlas.

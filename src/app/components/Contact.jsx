@@ -2,7 +2,7 @@ import { useState } from "react";
 import { api } from "../lib/api";
 
 const types = ["Freelance", "Internship", "Full-time", "Just say hi"];
-const contactEmail = "marouane.souabni@usmba.ac.ma";
+const contactEmail = "sbnmarouan@gmail.com";
 
 export function Contact() {
   const [type, setType] = useState("Internship");
