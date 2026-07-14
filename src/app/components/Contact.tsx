@@ -76,7 +76,7 @@ export function Contact() {
                 </div>
                 <span className="text-bone/40 group-hover:text-amber group-hover:rotate-45 transition-all">→</span>
               </a>
-              <a href="./Marouane_Souabni_MERN_Internship_CV.pdf" className="flex items-center justify-between border border-bone/10 rounded-sm px-5 py-4 hover:border-amber group transition-colors">
+              <a href="/Marouane_Souabni_MERN_Internship_CV.pdf" className="flex items-center justify-between border border-bone/10 rounded-sm px-5 py-4 hover:border-amber group transition-colors">
                 <div>
                   <div className="text-[10px] tracking-[0.2em] text-bone/40 mb-1">VIEW CV</div>
                   <div className="text-bone">Download résumé (PDF)</div>

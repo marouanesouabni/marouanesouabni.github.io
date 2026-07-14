@@ -71,7 +71,7 @@ export function Hero() {
             <div className="relative max-w-xs mx-auto sm:mx-0">
               <div className="aspect-[3/4] rounded-sm overflow-hidden border border-bone/10 grayscale hover:grayscale-0 transition-all duration-700">
                 <ImageWithFallback
-                  src="./profile.jpg"
+                  src="/profile.jpg"
                   alt="Marouane Souabni"
                   className="w-full h-full object-cover"
                 />
