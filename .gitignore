@@ -3,6 +3,10 @@ dist/
 .env
 .env.*
 !.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
 .DS_Store
 *.local
- dist/
